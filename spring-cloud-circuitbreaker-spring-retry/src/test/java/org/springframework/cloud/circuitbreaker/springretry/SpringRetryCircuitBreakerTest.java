@@ -44,11 +44,8 @@ class SpringRetryCircuitBreakerTest {
 	@Test
 	void testFallback() {
 		SpringRetryCircuitBreakerFactory factory = new SpringRetryCircuitBreakerFactory();
-		Supplier<String> spyedSup = spy(new Supplier<String>() {
-			@Override
-			public String get() {
-				throw new RuntimeException("boom");
-			}
+		Supplier<String> spyedSup = spy(() -> {
+			throw new RuntimeException("boom");
 		});
 		CircuitBreaker cb = factory.create("foo");
 		for (int i = 0; i < 10; i++) {
