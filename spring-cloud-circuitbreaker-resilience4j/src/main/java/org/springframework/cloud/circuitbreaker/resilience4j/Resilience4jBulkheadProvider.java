@@ -48,7 +48,7 @@ public class Resilience4jBulkheadProvider {
 
 	private Function<String, Resilience4jBulkheadConfigurationBuilder.BulkheadConfiguration> defaultConfiguration;
 
-	private boolean semaphoreDefaultBulkhead = false;
+	private final boolean semaphoreDefaultBulkhead;
 
 	public Resilience4jBulkheadProvider(ThreadPoolBulkheadRegistry threadPoolBulkheadRegistry,
 			BulkheadRegistry bulkheadRegistry,
