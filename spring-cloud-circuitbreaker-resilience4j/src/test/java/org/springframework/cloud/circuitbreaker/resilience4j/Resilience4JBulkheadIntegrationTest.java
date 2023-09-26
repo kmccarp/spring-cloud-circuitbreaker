@@ -115,8 +115,8 @@ public class Resilience4JBulkheadIntegrationTest {
 	@Test
 	public void testBulkheadTwoParallelSlowOneNotPermitted() throws InterruptedException {
 		ExecutorService executorService = Executors.newFixedThreadPool(2);
-		executorService.submit(() -> service.slowBulkhead());
-		executorService.submit(() -> service.slowBulkhead());
+		executorService.submit(service::slowBulkhead);
+		executorService.submit(service::slowBulkhead);
 		executorService.shutdown();
 		executorService.awaitTermination(10, TimeUnit.SECONDS);
 
@@ -127,9 +127,9 @@ public class Resilience4JBulkheadIntegrationTest {
 	@Test
 	public void testThreadPoolBulkheadThreeParallelSlowOneNotPermitted() throws InterruptedException {
 		ExecutorService executorService = Executors.newFixedThreadPool(3);
-		executorService.submit(() -> service.slowThreadPoolBulkhead());
-		executorService.submit(() -> service.slowThreadPoolBulkhead());
-		executorService.submit(() -> service.slowThreadPoolBulkhead());
+		executorService.submit(service::slowThreadPoolBulkhead);
+		executorService.submit(service::slowThreadPoolBulkhead);
+		executorService.submit(service::slowThreadPoolBulkhead);
 		executorService.shutdown();
 		executorService.awaitTermination(10, TimeUnit.SECONDS);
 
