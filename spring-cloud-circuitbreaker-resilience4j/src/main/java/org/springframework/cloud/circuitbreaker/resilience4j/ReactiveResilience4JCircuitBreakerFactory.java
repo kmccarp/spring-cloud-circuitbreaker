@@ -46,7 +46,7 @@ public class ReactiveResilience4JCircuitBreakerFactory extends
 
 	private TimeLimiterRegistry timeLimiterRegistry = TimeLimiterRegistry.ofDefaults();
 
-	private Map<String, Customizer<CircuitBreaker>> circuitBreakerCustomizers = new HashMap<>();
+    private final Map<String, Customizer<CircuitBreaker>> circuitBreakerCustomizers = new HashMap<>();
 
 	public ReactiveResilience4JCircuitBreakerFactory(CircuitBreakerRegistry circuitBreakerRegistry,
 			TimeLimiterRegistry timeLimiterRegistry) {
